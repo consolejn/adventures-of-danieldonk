@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Text Adventure</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Intro Screen (Enables Audio) -->
+  <div id="intro-screen">
+    <p id="intro-message">Modern web browsers block audio from autoplaying to respect your preferences.<br>
+       To allow the best experience click the button below to allow music and continue to the main menu.<br>
+       Enjoy!</p>
+    <button id="intro-button">ACCEPT</button>
+  </div>
+  
+  <!-- Main Menu -->
+  <div id="main-menu">
+    <img id="menu-gif" src="assets/gifs/stickman1.gif" alt="Stickman Animation"/>
+    <h1 id="game-title">ADVENTURES OF DANIEL DONK</h1>
+    <button id="start-button" class="flash-text">START</button>
+
+    <!-- <button id="mute-button">Mute Music</button> -->
+
+    <audio id="menu-music" loop>
+      <source src="assets/audio/MainMenuMusicOption2.wav" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <!-- Game UI -->
+  <div id="game-ui">
+    <div id="text-box"></div>
+    <div id="choices"></div>
+
+    <div id="controls">
+      <button onclick="skipTyping()">SKIP</button>
+      <button onclick="toggleMusic()">TOGGLE MUSIC</button>
+      <audio id="bgm" loop>
+        <!-- STILL YET TO ADD MUSIC FOR GAME UI -->
+        <source src="assets/audio/name_of_music_file.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
