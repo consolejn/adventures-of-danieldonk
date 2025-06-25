@@ -41,7 +41,7 @@ It's quiet, too quiet...`,
     text: `As you are panicking you think to yourself... what should I take?!`,
     choices: [
       { text: "> Grab the first aid kit in the kitchen.", next: "CH1-001cc-FirstAid" },
-      { text: "> Stuff your a backpack with delicious any food and drink supplies you can find.", next: "CH1-001ccc-FoodAndDrink" },
+      { text: "> Stuff your a backpack with any delicious food and drink supplies you can find.", next: "CH1-001ccc-FoodAndDrink" },
       { text: "> Your pet hamster, Hammond.", next: "CH1-001cccc-Hammond" }
     ]
   },
