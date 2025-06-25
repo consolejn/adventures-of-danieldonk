@@ -1,28 +1,93 @@
 const pages = {
-  start: {
-    text: "Welcome to James' Text Adventure Web Game! :) \nIn this game, you'll be presented with choices that shape your journey.\nEvery decision matters, so choose carefully, these decisions will ultimately change the story and determine your FATE!",
+// PAGE 1
+  "CH1-001-Start": {
+    text: `You wake to a low rumble beneath you. The ground trembles gently at first but quickly worsens.
+A photo of your pet hamster tips off the bedside table and hits the floor.
+Glass shatters somewhere in the kitchen.
+Quick! What now!?`,
     choices: [
-      // The placeholder names are just to demo for now, will be changed to the outcome name.
-      { text: "> Pick this option!", next: "PlaceholderNameOption1" }, 
-      { text: "> No, don't pick that one, pick this one!!!", next: "PlaceholderNameOption2" },
-      { text: "> Those other options seem desperate. Pick this one, if you want, idk.", next: "PlaceholderNameOption3" }
+      { text: "> Take cover underneath your desk.", next: "CH1-001a-UnderDesk" }, 
+      { text: "> Grab your pillow and cover your head with it.", next: "CH1-001b-PillowProtect" },
+      { text: "> Grab some things and run outside.", next: "CH1-001c-GrabBelongings" }
     ]
   },
-  PlaceholderNameOption1: {
-    text: "Ty for picking this option :) TO BE CONTINUED.",
-    choices: []
+
+  "CH1-001a-UnderDesk": {
+    text: `You duck under the desk just as the rumbling peaks, dust falls from the ceiling and everything is suddenly quiet.`,
+    choices: [
+      { text: "> Look outside your bedroom window.", next: "CH1-001aa-LookOutsideWindow" },
+      { text: "> Head straight for the front door to go outside.", next: "CH1-002-Outside" }
+    ]
   },
-  PlaceholderNameOption2: {
-    text: "I KNEW YOU WOULD PICK THIS ONE, YES! TO BE CONTINUED.",
-    choices: []
+
+  "CH1-001aa-LookOutsideWindow": {
+    text: `You look outside but this doesn't seem to be the usual view of your neighborhood... 
+Thick, glowing fog surrounds your house.`,
+    choices: [
+      {text: "> Head to the front door to go outside.",next: "CH1-002-Outside"},
+    ]
   },
-  PlaceholderNameOption3: {
-    text: "Omg thank god you picked this one, phew... I was really hoping playing it cool would work. TO BE CONTINUED.",
+
+  "CH1-001b-PillowProtect": {
+    text: `You pull your pillow over your head and brace yourself. The shaking continues for a few seconds, then stops.
+It's quiet, too quiet...`,
+    choices: [
+      { text: "> Look outside your bedroom window.", next: "CH1-001aa-LookOutsideWindow" },
+      { text: "> Head to the front door to go outside.", next: "CH1-002-Outside" }
+    ]
+  },
+
+  "CH1-001c-GrabBelongings": {
+    text: `As you are panicking you think to yourself... what should I take?!`,
+    choices: [
+      { text: "> Grab the first aid kit in the kitchen.", next: "CH1-001cc-FirstAid" },
+      { text: "> Stuff your a backpack with delicious any food and drink supplies you can find.", next: "CH1-001ccc-FoodAndDrink" },
+      { text: "> Your pet hamster, Hammond.", next: "CH1-001cccc-Hammond" }
+    ]
+  },
+
+  "CH1-001cc-FirstAid": {
+    text: `You step into the kitchen where you see a broken glass and everything is a mess.
+There it is! You grab the first aid kit.`,
+
+    choices: [
+      {text: "> Head to the front door to go outside", next: "CH1-002-Outside" }
+    ]
+  },
+
+  "CH1-001ccc-FoodAndDrink": {
+    text: `You step into the kitchen where you see broken glass and everything is a mess.
+You still manage to get to the fridge and shove some leftover chicken snitzel and iced tea into your backpack.`,
+    choices: [
+      { text: "> Head to the front door to go outside.", next: "CH1-002-Outside" }
+    ]
+  },
+
+    "CH1-001cccc-Hammond": {
+    text: `You run straight to your beloved Hammond, he looks as shocked as you are!
+You pick up the photo of him from the floor, put it on top of his cage and begin to carry it.`,
+    choices: [
+      { text: "> Head to the front door to go outside.", next: "CH1-002-Outside" }
+    ]
+  },
+
+  // PAGE 2
+  "CH1-002-Outside": {
+    text: `As you step outside, you find your house perched alone atop a grassy hill, surrounded by endless, thick fog.`,
+    choices: [
+      { text: "> Continue...", next: "CH1-003-NextScene" }
+    ]
+  },
+  // PAGE 3
+  "CH1-003-NextScene": {
+    text: `To be continued...`,
     choices: []
   }
 };
 
+
 let isTyping = true;
+let sfxEnabled = true;
 let typingTimeout;
 
 const textBox = document.getElementById('text-box');
@@ -33,14 +98,16 @@ async function typeText(text, callback) {
   textBox.textContent = '';
   isTyping = true;
 
-  // Create or reuse typing sound effect
+  // Typing SFX //
   if (!window.typingSound) {
     window.typingSound = new Audio('assets/audio/TypingDialogueSoundEffect.wav');
     window.typingSound.loop = true;
     window.typingSound.volume = 0.3; // Adjust volume if needed
   }
 
-  window.typingSound.play();
+  if (sfxEnabled){
+    window.typingSound.play();
+  }
 
   let i = 0;
 
@@ -58,15 +125,27 @@ async function typeText(text, callback) {
   window.typingSound.pause();
   window.typingSound.currentTime = 0;
 
+  const skipButton = document.getElementById('skip-button');
+  if (skipButton) {
+    skipButton.style.display = 'none';
+  }
+
   callback();
 }
 
 function skipTyping() {
   isTyping = false;
   clearTimeout(typingTimeout);
+
   if (window.typingSound) {
     window.typingSound.pause();
     window.typingSound.currentTime = 0;
+  }
+
+  // Hide the skip button after it's used
+  const skipButton = document.querySelector('button[onclick="skipTyping()"]');
+  if (skipButton) {
+    skipButton.style.display = 'none';
   }
 }
 
@@ -78,10 +157,29 @@ function toggleMusic() {
   }
 }
 
+function toggleSFX() {
+  sfxEnabled = !sfxEnabled;
+
+  // Optionally pause immediately if turning off mid-typing
+  if (!sfxEnabled && window.typingSound) {
+    window.typingSound.pause();
+    window.typingSound.currentTime = 0;
+  }else if (sfxEnabled && isTyping && window.typingSound) {
+    window.typingSound.play();
+  }
+
+  // Optional: visual feedback in button text
+  const sfxButton = document.querySelector("#controls button:nth-child(2)");
+  sfxButton.textContent = sfxEnabled ? "SFX: ON" : "SFX: OFF";
+}
+
 function showPage(id) {
   const page = pages[id];
   choicesBox.innerHTML = '';
   skipTyping();
+
+  document.getElementById('skip-button').style.display = 'inline-block';
+
   typeText(page.text, () => {
     page.choices.forEach(choice => {
       const el = document.createElement('div');
@@ -144,6 +242,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("game-ui").style.display = "block";
 
     fadeOutMusic(menuMusic, 3000);
-    showPage('start');
+    showPage('CH1-001-Start');
   });
 });

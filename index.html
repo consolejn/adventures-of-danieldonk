@@ -35,8 +35,9 @@
     <div id="choices"></div>
 
     <div id="controls">
-      <button onclick="skipTyping()">SKIP</button>
-      <button onclick="toggleMusic()">TOGGLE MUSIC</button>
+      <button id ="skip-button" onclick="skipTyping()">SKIP</button>
+      <button onclick="toggleSFX()">SFX ON</button>
+      <button onclick="toggleMusic()">MUSIC ON</button>
       <audio id="bgm" loop>
         <!-- STILL YET TO ADD MUSIC FOR GAME UI -->
         <source src="assets/audio/name_of_music_file.mp3" type="audio/mpeg">

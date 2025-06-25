@@ -150,10 +150,16 @@ button {
 
 .choice {
   display: block;
-  margin: 10px 0;
+  width: fit-content;
   cursor: pointer;
+  padding: 4px 8px;
+  margin-bottom: 8px;
   color: #00ffff;
   text-decoration: underline;
+}
+
+.choice:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle glow */
 }
 
 #controls {
