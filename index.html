@@ -17,7 +17,7 @@
   
   <!-- Main Menu -->
   <div id="main-menu">
-    <img id="menu-gif" src="assets/gifs/stickman1.gif" alt="Stickman Animation"/>
+    <!-- <img id="menu-gif" src="assets/gifs/stickman1.gif" alt="Stickman Animation"/> -->
     <h1 id="game-title">ADVENTURES OF DANIEL DONK</h1>
     <button id="start-button" class="flash-text">START</button>
 
@@ -36,12 +36,29 @@
 
     <div id="controls">
       <button id ="skip-button" onclick="skipTyping()">SKIP</button>
-      <button onclick="toggleSFX()">SFX ON</button>
-      <button onclick="toggleMusic()">MUSIC ON</button>
+      <button id ="sfx-button">SFX ON</button>
+      <button id ="music-button">MUSIC TOGGLE (UNDER CONSTRUCTION)</button>
       <audio id="bgm" loop>
         <!-- STILL YET TO ADD MUSIC FOR GAME UI -->
         <source src="assets/audio/name_of_music_file.mp3" type="audio/mpeg">
       </audio>
+    </div>
+  </div>
+
+  <!-- Save/Load Controls-->
+  <div id="save-load-controls">
+    <button id="save-button">SAVE</button>
+    <button id="load-button">LOAD</button>
+  </div>
+
+    <!-- Confirmation Modal / Popup -->
+  <div id="confirm-modal" class="modal hidden">
+    <div class="modal-content">
+      <p id="confirm-message">Are you sure?</p>
+      <div class="modal-buttons">
+        <button id="confirm-yes">Yes</button>
+        <button id="confirm-no">No</button>
+      </div>
     </div>
   </div>
 
