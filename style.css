@@ -251,3 +251,9 @@ button {
   color: #000;
 }
 
+#page-image {
+  width: 48px;        /* emoji-sized – tweak to 40–56px if you want */
+  height: auto;
+  vertical-align: middle;
+  margin-left: 8px;
+}
