@@ -120,9 +120,9 @@ Down the slope, you spot a faint outline: a wooden sign, crooked but still holdi
   },
 
   "CH1-003a-BraveWalk": {
-    text: `You take three bold steps and immediately realise the hill is steeper than you thought. You lose your balance and start sliding... then tumbling... then fully committing to gravity.
+    text: `You take three bold steps and immediately realise the hill is steeper than you thought. You lose your balance and start sliding... then tumbling until you reach the bottom of the hill.
 
-At the bottom, you shake off the dirt and stand up like that was the plan.`,
+You shake off the dirt and stand up and look around.`,
     choices: [{ text: "> Walk toward the sign.", next: "CH1-004-Signpost" }]
   },
 
@@ -160,7 +160,7 @@ You squint. "Roughly that way." How helpful.`,
   },
 
   "CH1-004a-SecretCompartment": {
-    text: `You pat down the sign like it owes you money. No secret compartment... but you *do* find a nailed-on pamphlet titled: "How To Not Die In Gloamhill (Best Guide Version)"
+    text: `You pat down the sign like it owes you money. No secret compartment... but you do find a pamphlet nailed-on that has the heading: "How To Not Die In Gloamhill"
 
 It reads:
 Step 1: "The fog is always listening."
@@ -205,12 +205,13 @@ The goblin squints. "That pose is illegal in Mosswich without a permit... good t
 
   // PAGE 6
   "CH1-006-PipGuide": {
-    text: `Pip shuffles closer, peering at you like you're a weird bird. Pip says, "I can guide you but the first rule of the hills: the fog listens... and it remembers."
+    text: `Pip shuffles closer, peering at you like you're a weird bird. She senses the opportunity to adventure.
 
-The fog around the bridge swirls like it's offended you didn't compliment it.`,
+She says, "You need a guide? I am the best guide around! I just need one small favour..."`,
+
     choices: [
-      { text: "> Whisper an apology to the fog.", next: "CH1-006a-ApologizeFog" },
-      { text: "> Ask Pip what the fog actually is.", next: "CH1-006b-AskFog" },
+      { text: "> Ask what kind of favour?.", next: "CH1-006a-AskAboutFavour" },
+      { text: "> Ask Pip what the fog actually is?", next: "CH1-006b-AskAboutFog1" },
       {
         text: "> Tell Pip about Hammond.",
         next: "CH1-006c-HammondLore",
@@ -219,18 +220,23 @@ The fog around the bridge swirls like it's offended you didn't compliment it.`,
     ]
   },
 
-  "CH1-006a-ApologizeFog": {
-    text: `You lean toward the mist and whisper an apology. The fog calms.
+  "CH1-006a-AskAboutFavour": {
+    text: `You think to yourself... I could really use a guide... "What kind of favour?" you ask.
 
-Pip nods like you just passed a wizard exam.`,
+Pip nods, "I lost my brother somewhere in the fog. Maybe you can help me find him?"
+
+You find it ironic and a bit unsettling that your new potential guide lost their own brother but you feel as though you don't have much choice. "Deal."`,
+
     choices: [{ text: "> Continue with Pip toward Mosswich.", next: "CH1-007-MosswichGate" }]
   },
 
-  "CH1-006b-AskFog": {
+  "CH1-006b-AskAboutFog1": {
     text: `Pip lowers their voice. "Some say it's the world's breath. Some say it's a curse others say it's just weather with attitude."
 
-The fog swirls. It definitely heard that.`,
-    choices: [{ text: "> Continue toward Mosswich carefully.", next: "CH1-007-MosswichGate" }]
+The fog swirls. It definitely heard that.
+
+"That's why you need a guide! I am the best around, I just need a small favour!"`,
+    choices: [{ text: "> Ask Pip what kind of favour?", next: "CH1-006a-AskAboutFavour" }]
   },
 
   "CH1-006c-HammondLore": {
@@ -248,7 +254,7 @@ A guard leans over the wall, tall and sleep-deprived looking, wearing a helmet t
     choices: [
       { text: "> Look to Pip for help.", next: "CH1-007a-PipPassword" },
       { text: "> Attempt a confident password: \"Moss...Wich?\"", next: "CH1-007b-BadPassword" },
-      { text: "> Tell the truth: \"I don't have one. I have confusion.\"", next: "CH1-007c-TruthPassword" }
+      { text: "> Tell the truth: \"I'm really confused.\"", next: "CH1-007c-TruthPassword" }
     ]
   },
 
@@ -262,24 +268,27 @@ The guard nods. "Correct. We're very polite here."`,
   "CH1-007b-BadPassword": {
     text: `"Moss...Wich?" you say.
 
-The guard squints. "That's the town name."
+The guard squints. "Uh, yes, that's the town name."
 
-You nod like that was the plan. Pip leans in. "Say 'Please'."`,
+You nod like that was the plan. 
+Pip leans in. "Say 'Please'."`,
     choices: [{ text: "> Say: \"Please.\"", next: "CH1-008-InTown" }]
   },
 
   "CH1-007c-TruthPassword": {
-    text: `The guard scratches at the edge of their helmet. Pip leans in. "Say 'Please'."`,
+    text: `The guard scratches at the edge of their helmet. 
+Pip leans in. "Say 'Please'."`,
     choices: [{ text: "> Say: \"Please.\"", next: "CH1-008-InTown" }]
   },
 
   // PAGE 8
   "CH1-008-InTown": {
-    text: `The gates open with a long creak and you enter Mosswich. It smells like soup, wet wood and optimism.
+    text: `The gates open with a long creak and you enter Mosswich. It smells like swamplike but it's got a charm to it.
 
-People bustle around: humans, goblins, tall folk with glowing eyes you even notice a cat wearing a tiny cape.
+People bustling around.
+Humans, goblins, tall folk with glowing eyes you even notice a grey cat wearing a tiny cape.
 
-Pip gestures at an inn sign: "THE SOGGY BOOT." The boot on the sign drips water continuously, like it's committed to the bit.`,
+Pip gestures towards the sign of the inn: "THE SOGGY BOOT." The boot on the sign drips water continuously, like it's committed to the bit.`,
     choices: [{ text: "> Proceed to the inn.", next: "CH1-009-Inn" }]
   },
 
@@ -291,12 +300,12 @@ Pip gestures at an inn sign: "THE SOGGY BOOT." The boot on the sign drips water 
 
 You take one sip of stew and immediately feel 12% more capable.`,
     choices: [
-      { text: "> Ask about the fog.", next: "CH1-009b-AskFog" },
+      { text: "> Ask about the fog.", next: "CH1-009b-AskAboutFog" },
       { text: "> Eat more stew.", next: "CH1-009c-EatMoreStew" }
     ]
   },
 
-  "CH1-009b-AskFog": {
+  "CH1-009b-AskAboutFog": {
     text: `Pip lowers their voice. "Fog's been thicker lately. Like it's gathering itself." The bartender leans in too, because gossip is universal. "Some say the fog is looking for something it lost."
 
 You blink. "Fog can lose things?"
@@ -392,7 +401,7 @@ Pip taps the doorframe.`,
   "CH2-003-KitchenArmour": {
     text: `You step inside. Your apartment is... mostly fine. A little messy. A little dusty.
 
-Pip heads straight to the kitchen like a raccoon with purpose. They hold up a metal colander. "Helmet." Then a wooden spoon. "Wand." And finally, the lid of a large pot. "Shield."
+Pip heads straight to the kitchen like a raccoon with purpose. They pull a handful of kitchen items off the counter and start assembling them into makeshift armour."
 
 Pip beams, proud of themself.`,
     choices: [
@@ -411,7 +420,7 @@ You stare at the pot lid. Somewhere, a chef cries.`,
   "CH2-004-ArmourLoot": {
     text: `You grab the basics: backpack, bandages, snacks and water.
 
-Pip discovers your oven mitts and wears them like gauntlets. "Behold," Pip says, "Fist-Pillows."
+Pip discovers your oven mitts and wears them like gauntlets.
 
 Then you hear it... a tiny slurping sound from the living room.`,
     choices: [
@@ -424,9 +433,9 @@ Then you hear it... a tiny slurping sound from the living room.`,
   "CH2-005-HammondTV": {
     text: `You enter the living room. And there he is.
 
-Hammond.
+Hammond!
 
-He's sitting cosy in your bean bag like a tiny landlord, watching TV. It even looks like he set up his own water dispenser with a juice box.
+He's sitting cosy in your bean bag watching TV and it even looks like he set up his own water dispenser with a juice box.
 
 You blink. Pip blinks. Hammond does not blink, eyes glued to the screen.`,
     choices: [
@@ -520,7 +529,9 @@ The local gasps. "Blasphemy!"`,
   },
 
   "CH3-001-Name": {
-    text: `(To be continued...)`,
+    text: `(To be continued...)
+  
+  More chapters coming soon!`,
     choices: [{ text: "> Return to Start", next: "CH1-001-Start" }]
   }
 };
